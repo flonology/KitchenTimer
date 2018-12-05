@@ -288,9 +288,9 @@ var kitchenTimerViewModel = function(view, timer) {
         my.updateTickingTitle();
     };
 
-    my.controlTicking = function() {
-        if (my.timer.ticking()) {
-            return;
+    my.startTicking = function() {
+        if (my.interval) {
+            window.clearInterval(my.interval);
         }
 
         my.interval = window.setInterval(function () {
@@ -311,7 +311,7 @@ var kitchenTimerViewModel = function(view, timer) {
         enableFormSubmit: function () {
             my.view.setFormSubmitEvent(function() {
                 my.windUp();
-                my.controlTicking();
+                my.startTicking();
             });
         }
     }
